@@ -11,7 +11,7 @@ Extracts a summary table of vulnerable dependencies grouped by component, showin
 **Usage:**
 
 ```bash
-python3 sca_summary.py <path-to-veracode.json>
+python sca_summary.py <path-to-veracode.json>
 ```
 
 ### `extract_configs.py`
@@ -21,7 +21,7 @@ Extracts IaC/Dockerfile configuration findings sorted by severity.
 **Usage:**
 
 ```bash
-python3 extract_configs.py <path-to-veracode.json>
+python extract_configs.py <path-to-veracode.json>
 ```
 
 ### `sca_detail.py`
@@ -31,11 +31,11 @@ Extracts detailed CVE information for a specific component, including CVSS score
 **Usage:**
 
 ```bash
-python3 sca_detail.py <path-to-veracode.json> <component-name>
+python sca_detail.py <path-to-veracode.json> <component-name>
 ```
 
 **Example:**
 
 ```bash
-python3 sca_detail.py veracode.json snakeyaml
+python sca_detail.py veracode.json snakeyaml
 ```

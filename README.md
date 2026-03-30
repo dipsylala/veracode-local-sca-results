@@ -1,6 +1,8 @@
 # veracode-local-sca-results
 
-A GitHub Copilot skill for interpreting [Veracode local SCA scan](https://docs.veracode.com/r/Veracode_SCA) JSON results. It summarises dependency vulnerabilities (SCA) and IaC/Dockerfile misconfigurations, and provides prioritised remediation guidance.
+A reusable LLM prompt + scripts pattern for interpreting [Veracode local SCA scan](https://docs.veracode.com/r/Agent_Based_Scans) JSON results. It summarises dependency vulnerabilities (SCA) and IaC/Dockerfile misconfigurations, and provides prioritised remediation guidance.
+
+Works with any LLM — Claude, ChatGPT, GitHub Copilot, or any tool that accepts a system prompt.
 
 ## What it does
 
@@ -12,7 +14,15 @@ A GitHub Copilot skill for interpreting [Veracode local SCA scan](https://docs.v
 
 ## Usage
 
-Install this skill in your VS Code Copilot setup, then ask Copilot about a Veracode scan result file:
+### Any LLM (Claude, ChatGPT, etc.)
+
+1. Copy the contents of `SKILL.md` into the model's system prompt or custom instructions
+2. Run the relevant script(s) to extract data from your scan file (see [Scripts](#scripts) below)
+3. Paste the script output into the conversation and ask the model to summarise it
+
+### GitHub Copilot (VS Code)
+
+Add this repo as a skill source in your Copilot agent setup, then ask Copilot about a Veracode scan result file:
 
 > "Summarise this Veracode scan: `/path/to/veracode.json`"
 
@@ -34,13 +44,13 @@ The scripts under `scripts/` can also be run directly against a scan file:
 
 ```bash
 # Dependency vulnerability summary
-python3 scripts/sca_summary.py path/to/veracode.json
+python scripts/sca_summary.py path/to/veracode.json
 
 # IaC/Dockerfile misconfiguration summary
-python3 scripts/iac_summary.py path/to/veracode.json
+python scripts/iac_summary.py path/to/veracode.json
 
 # Detailed CVE info for a specific component
-python3 scripts/sca_detail.py path/to/veracode.json <component-name>
+python scripts/sca_detail.py path/to/veracode.json <component-name>
 ```
 
 **Requirements:** Python 3.6+, no third-party dependencies.

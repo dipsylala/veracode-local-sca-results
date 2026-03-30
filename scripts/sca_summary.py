@@ -1,10 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """Extract SCA vulnerability summary from Veracode local scan results."""
 import json, sys
 from collections import defaultdict
 
 if len(sys.argv) < 2:
-    print("Usage: python3 sca_summary.py <veracode-json-path>")
+    print("Usage: python sca_summary.py <veracode-json-path>")
     sys.exit(1)
 
 sev_order = ['Critical', 'High', 'Medium', 'Low', 'Negligible']

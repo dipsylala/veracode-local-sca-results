@@ -1,9 +1,9 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """Extract detailed CVE information for a specific component."""
 import json, sys
 
 if len(sys.argv) < 3:
-    print("Usage: python3 sca_detail.py <veracode-json-path> <component-name>")
+    print("Usage: python sca_detail.py <veracode-json-path> <component-name>")
     sys.exit(1)
 
 sev_order = ['Critical', 'High', 'Medium', 'Low', 'Negligible']

@@ -1,9 +1,9 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 """Extract IaC/Dockerfile config findings from Veracode local scan results."""
 import json, sys
 
 if len(sys.argv) < 2:
-    print("Usage: python3 extract_configs.py <veracode-json-path>")
+    print("Usage: python extract_configs.py <veracode-json-path>")
     sys.exit(1)
 
 data = json.load(open(sys.argv[1]))

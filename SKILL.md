@@ -27,13 +27,13 @@ Run the analysis scripts from the `scripts/` subfolder alongside this skill file
 
 **Run SCA summary:**
 ```bash
-python3 <skill-dir>/scripts/sca_summary.py <path-to-veracode.json>
+python <skill-dir>/scripts/sca_summary.py <path-to-veracode.json>
 ```
 This outputs: policy status, secrets count, and the vulnerability summary table.
 
 **Run IaC summary:**
 ```bash
-python3 <skill-dir>/scripts/iac_summary.py <path-to-veracode.json>
+python <skill-dir>/scripts/iac_summary.py <path-to-veracode.json>
 ```
 
 > **Duplicate matches note**: The same CVE often appears multiple times in the JSON (once per artifact location). Scripts auto-deduplicate — CVE counts reflect unique advisories only.
@@ -67,12 +67,12 @@ Ref: <PrimaryURL>
 When the user asks about a specific component or CVE, run the detail script from the `scripts/` subfolder alongside this skill file:
 
 ```bash
-python3 <skill-dir>/scripts/sca_detail.py <path-to-veracode.json> <component-name>
+python <skill-dir>/scripts/sca_detail.py <path-to-veracode.json> <component-name>
 ```
 
 Example:
 ```bash
-python3 <skill-dir>/scripts/sca_detail.py veracode.json snakeyaml
+python <skill-dir>/scripts/sca_detail.py veracode.json snakeyaml
 ```
 
 State the recommended action (Upgrade / Replace / Remove) with the specific target version if available.
