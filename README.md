@@ -1,8 +1,8 @@
 # veracode-local-sca-results
 
-A reusable LLM prompt + scripts pattern for interpreting [Veracode local SCA scan](https://docs.veracode.com/r/Agent_Based_Scans) JSON results. It summarises dependency vulnerabilities (SCA) and IaC/Dockerfile misconfigurations, and provides prioritised remediation guidance.
+A reusable agent skill + scripts pattern for interpreting [Veracode local SCA scan](https://docs.veracode.com/r/Agent_Based_Scans) JSON results. It summarises dependency vulnerabilities (SCA) and IaC/Dockerfile misconfigurations, and provides prioritised remediation guidance.
 
-Works with any LLM — Claude, ChatGPT, GitHub Copilot, or any tool that accepts a system prompt.
+Works with GitHub Copilot, Cursor, Claude Code, and any agent that supports the `SKILL.md` convention.
 
 ## What it does
 
@@ -14,15 +14,17 @@ Works with any LLM — Claude, ChatGPT, GitHub Copilot, or any tool that accepts
 
 ## Usage
 
-### Any LLM (Claude, ChatGPT, etc.)
+### GitHub Copilot, Cursor, and other AI IDEs
 
-1. Copy the contents of `SKILL.md` into the model's system prompt or custom instructions
-2. Run the relevant script(s) to extract data from your scan file (see [Scripts](#scripts) below)
-3. Paste the script output into the conversation and ask the model to summarise it
+Copy or clone this folder into your project (or home directory for personal use):
 
-### GitHub Copilot (VS Code)
+| Location | Scope |
+| ---------- | ------- |
+| `.github/skills/veracode-local-sca-results/` | Project — GitHub Copilot |
+| `.agents/skills/veracode-local-sca-results/` | Project — other agents |
+| `.claude/skills/veracode-local-sca-results/` | Project — Claude/Cursor |
 
-Add this repo as a skill source in your Copilot agent setup, then ask Copilot about a Veracode scan result file:
+The agent will automatically load the skill when relevant, or you can invoke it directly:
 
 > "Summarise this Veracode scan: `/path/to/veracode.json`"
 
