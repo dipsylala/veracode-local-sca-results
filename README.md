@@ -29,13 +29,12 @@ Copy or clone this folder into your project (or home directory for personal use)
 The agent will automatically load the skill when relevant, or you can invoke it directly:
 
 > "Summarise this Veracode scan: `/path/to/veracode.json`"
-
 > "Give me details on the `log4j-core` findings in `veracode.json`"
 
 ## Repository contents
 
 | Path | Description |
-|------|-------------|
+| ------ | ------------- |
 | `SKILL.md` | Skill definition and agent instructions |
 | `REFERENCE.md` | Full JSON schema reference for Veracode local SCA output |
 | `scripts/sca_summary.py` | Extracts a summary table of vulnerable dependencies |
