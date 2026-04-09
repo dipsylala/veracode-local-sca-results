@@ -1,6 +1,16 @@
 #!/usr/bin/env python
 """Extract detailed CVE information for a specific component."""
 import json, sys
+try:
+    from packaging.version import Version as PkgVersion
+    def _ver_key(v):
+        try: return (0, PkgVersion(v))
+        except Exception: return (1, v)
+except ImportError:
+    def _ver_key(v):
+        import re
+        parts = re.split(r'[^0-9]+', v)
+        return tuple(int(p) if p.isdigit() else 0 for p in parts)
 
 if len(sys.argv) < 3:
     print("Usage: python sca_detail.py <veracode-json-path> <component-name>")
@@ -34,7 +44,7 @@ for m in sorted(seen.values(),
     cvss3 = next((c['metrics']['baseScore'] for c in v.get('cvss', []) 
                   if c.get('type') == 'Primary' and 
                   str(c.get('version', '')).startswith('3')), 'n/a')
-    fix_vers = ', '.join(v['fix'].get('versions') or ['none available'])
+    fix_vers = ', '.join(sorted(v['fix'].get('versions') or [], key=_ver_key) or ['none available'])
     
     print(f"CVE:         {v['id']}")
     print(f"Severity:    {v['severity']} (CVSS3: {cvss3})")
