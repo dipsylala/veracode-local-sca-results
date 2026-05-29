@@ -2,6 +2,20 @@
 
 This folder contains extraction scripts for analyzing Veracode local SCA scan results.
 
+## Requirements
+
+All scripts run on the Python standard library with no additional dependencies.
+
+For more accurate version comparison sorting in `sca_summary.py`, you can optionally install `packaging`:
+
+```bash
+pip install packaging
+```
+
+If `packaging` is not installed, the scripts fall back to a basic version sort automatically.
+
+> **Note:** `packaging` only understands PEP 440 (Python-style) version strings. For components from other ecosystems (e.g. Maven's `1.0.0.Final`, npm pre-release tags), unparseable versions will silently fall back to the basic sort regardless of whether `packaging` is installed.
+
 ## Scripts
 
 ### `sca_summary.py`

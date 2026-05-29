@@ -2,6 +2,17 @@
 """Extract SCA vulnerability summary from Veracode local scan results."""
 import json, sys
 from collections import defaultdict
+try:
+    from packaging.version import Version as PkgVersion
+    def _ver_key(v):
+        try: return (0, PkgVersion(v))
+        except Exception: return (1, v)  # unparseable versions sort last
+except ImportError:
+    def _ver_key(v):
+        # Fallback: split on non-numeric separators, pad with zeros
+        import re
+        parts = re.split(r'[^0-9]+', v)
+        return tuple(int(p) if p.isdigit() else 0 for p in parts)
 
 if len(sys.argv) < 2:
     print("Usage: python sca_summary.py <veracode-json-path>")
@@ -26,7 +37,7 @@ for k, v in comps.items():
     sev = min((m['vulnerability']['severity'] for m in v), 
               key=lambda s: sev_order.index(s) if s in sev_order else 99)
     cves = len({m['vulnerability']['id'] for m in v})
-    fv = sorted({ver for m in v for ver in (m['vulnerability']['fix'].get('versions') or [])})
+    fv = sorted({ver for m in v for ver in (m['vulnerability']['fix'].get('versions') or [])}, key=_ver_key)
     rows.append((k, sev, cves, fv[-1] if fv else 'none'))
 
 rows.sort(key=lambda r: sev_order.index(r[1]) if r[1] in sev_order else 99)
