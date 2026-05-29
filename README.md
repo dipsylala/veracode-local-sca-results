@@ -12,7 +12,7 @@ Works with GitHub Copilot, Cursor, Claude Code, and any agent that supports the 
 - Flags detected **secrets** as critical priority
 - Supports both a default **Summary** mode and an on-request **Detail** mode for drilling into a specific component or CVE
 
-## Usage
+## Installation
 
 ### Install with npx skills
 
@@ -38,6 +38,8 @@ Copy or clone this folder into your project (or home directory for personal use)
 | `.github/skills/veracode-local-sca-results/` | Project — GitHub Copilot |
 | `.agents/skills/veracode-local-sca-results/` | Project — other agents |
 | `.claude/skills/veracode-local-sca-results/` | Project — Claude/Cursor |
+
+## Usage
 
 The agent will automatically load the skill when relevant, or you can invoke it directly:
 
