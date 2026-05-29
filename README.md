@@ -14,6 +14,21 @@ Works with GitHub Copilot, Cursor, Claude Code, and any agent that supports the 
 
 ## Usage
 
+### Install with npx skills
+
+Use [npx skills](https://github.com/vercel-labs/skills) to install directly into your coding agent(s):
+
+```bash
+# Install to all detected agents (interactive)
+npx skills add dipsylala/veracode-local-sca-results
+
+# Install globally (available across all projects)
+npx skills add dipsylala/veracode-local-sca-results -g
+
+# Install to a specific agent non-interactively
+npx skills add dipsylala/veracode-local-sca-results -a claude-code -y
+```
+
 ### GitHub Copilot, Cursor, and other AI IDEs
 
 Copy or clone this folder into your project (or home directory for personal use):
